@@ -1,5 +1,6 @@
 package FullStack.Java.GWUCarpool;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public interface InternalAPI {
@@ -9,6 +10,9 @@ public interface InternalAPI {
 
 	public void createEvent(Date startTime, Date endTime, String startAddr,
 			String endAddr, int capacity, String description);
+
+	public ArrayList<Event> matchEvent(Date startTime, Date endTime,
+			String startAddr, String endAddr);
 
 	public void joinEvent(String username, int eventId);
 
