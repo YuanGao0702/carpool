@@ -1,0 +1,1 @@
+*Javabeans/entities*
