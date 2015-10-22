@@ -1,4 +1,4 @@
-package FullStack.Java.GWUCarpool;
+package com.gwu.carpool.pojo;
 
 import java.util.ArrayList;
 
