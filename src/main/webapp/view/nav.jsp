@@ -7,7 +7,7 @@
         <div id="myNavbar" class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
                 <li class="active" id="sign-in-li">
-                    <a href="../CarPool/view/register.jsp">Don't have an Account?</a>                 
+                    <a href="../carpool/view/register.jsp">Don't have an Account?</a>                 
                 </li>                         
                	<li class="active" id="sign-in-li">
                     <a href="" data-toggle="modal" data-target="#myModal">Sign In</a>                 
@@ -15,8 +15,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome!<b class="caret"></b></a>
                     <ul class="dropdown-menu">                
-                        <li><a href="../CarPool/view/account.jsp">My Account</a></li>
-                        <li><a href="../CarPool/view/user_profile.jsp">My Profile</a></li>             			
+                        <li><a href="../carpool/view/account.jsp">My Account</a></li>
+                        <li><a href="../carpool/view/user_profile.jsp">My Profile</a></li>             			
                         <li id="sign-out-li">
                             <a href="javascript:logout()">Sign Out</a>                 
                         </li>                      
