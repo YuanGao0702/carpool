@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <%@ include file = "nav.jsp" %>
     <div class="page">
-     	<form action="register.action">
+     	<form action="register.action" method="post">
 	    	<table>
 	    		<tr>
 					<td>First Name:</td>

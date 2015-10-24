@@ -20,5 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <%@ include file = "nav.jsp" %>
+    <script>
+		$(document).ready(function (){
+	  		var UserJson = ${categoryListJson};	  			  			
+	  	}); 	  	             
+    </script>
   </body>
 </html>

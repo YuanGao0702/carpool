@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <%@ include file = "nav.jsp" %>
-  <form class="form-horizontal" role="form" action="login.action">
+  <form class="form-horizontal" role="form" action="login.action" method="post">
     <div class="page">
        	<label for="session_email">Email</label>
 		<div class="input-group">

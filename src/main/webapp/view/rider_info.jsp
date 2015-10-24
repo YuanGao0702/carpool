@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div class="info">
    		<div class="container">
 			<div class="row">
-			   <form class="form-horizontal" role="form" action="search_event.action">			  
+			   <form class="form-horizontal" role="form" action="search_event.action" method="post">			  
 				  <div class="form-group">
 				    <label class="control-label col-sm-2">Location:</label>
 				    <div class="col-sm-5"> 
