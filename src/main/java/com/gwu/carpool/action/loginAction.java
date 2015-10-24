@@ -7,19 +7,29 @@ public class loginAction {
 	private String email;
 	private String password;
 
-	public String getemail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public String getpassword() {
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
 		return password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String execute() throws Exception {
+		System.out.println(getEmail());
+		System.out.println(getPassword());
 		User user = new User();
 		InternalAPI_v1 internal = new InternalAPI_v1();
-		user = internal.login(getemail());
-		if (user.getPassword().equals(getpassword()))
+		user = internal.login(getEmail());
+		if (user.getPassword().equals(getPassword()))
 			return "success";
 		else
 			return "error";
