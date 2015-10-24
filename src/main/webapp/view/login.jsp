@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <span class="input-group-addon">
 		        <i class="fa fa-envelope-o"></i>
 		    </span>
-		    <input type="text" name="userEmail"/>
+		    <input type="text" name="email"/>
 		</div>
     
 	    <label for="session_password">Password</label>
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<span class="input-group-addon">
 		    	<i class="fa fa-key"></i>
 		    </span>
-			<input type="password" name="userPwd"/>
+			<input type="password" name="password"/>
 		</div>
 		<button type="submit" class="btn btn-default">Login</button> 	
    </div>   
