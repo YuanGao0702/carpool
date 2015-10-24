@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  
 			  <div class="form-group"> 
 			    <div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-default"><a href="<%=path%>/view/driver_room.jsp">Launch Now!</a></button>
+			      <button type="submit" class="btn btn-default"><a href="<%=path%>/view/driver_room.jsp">Cteate Now!</a></button>
 			    </div>
 			  </div>
 			</form>

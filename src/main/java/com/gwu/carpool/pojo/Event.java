@@ -5,15 +5,17 @@ import java.util.Date;
 
 public class Event {
 	private int id;
-	private Date startTime;
-	private Date endTime;
+	private String title;
+	private Date date;
 	private String startAddress;
 	private String endAddress;
+	private int price;
 	private User driver;
 	private ArrayList<User> passengers;
 	private ArrayList<User> pending;
 	private int capacity;
 	private String description;
+	private String status;
 
 	public int getId() {
 		return id;
@@ -21,22 +23,6 @@ public class Event {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Date getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
 	}
 
 	public String getStartAddress() {
@@ -93,6 +79,30 @@ public class Event {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

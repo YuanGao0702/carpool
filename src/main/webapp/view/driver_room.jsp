@@ -90,6 +90,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<button type="button" class="btn btn-danger">Decline</button>				
 						</div>					
 					</div>	
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-default"><a href="<%=path%>/view/launched_room.jsp">Launched Now!</a></button>
+					</div>
 							
 				</div>
 				<div class="col-md-5">
