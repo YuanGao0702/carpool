@@ -43,7 +43,7 @@
 	                                        <span class="input-group-addon">
 	                                            <i class="fa fa-envelope-o"></i>
 	                                        </span>
-	                                        <input type="text" name="userEmail"/>
+	                                        <input type="text" name="email"/>
 	                                    </div>
                                 	</div>
                                 	<div class="text">
@@ -52,14 +52,9 @@
 	                                        <span class="input-group-addon">
 	                                            <i class="fa fa-key"></i>
 	                                        </span>
-	                                        <input type="password" name="userPwd"/>
+	                                        <input type="password" name="password"/>
 	                                    </div> 	
-                                	</div>                                                                       					    							    		
-							    		<!-- <tr>
-							    			<td>User Gender:</td>
-							    			<td><input type="radio" name="userGender" value="male"/>Male</td>
-							    			<td><input type="radio" name="userGender" value="female"/>Female</td>
-							    		</tr> -->							    	
+                                	</div>                                                                       					    							    									    								    	
                               	</div>
 
 	                            <div class="modal-footer">
