@@ -9,12 +9,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'rating.jsp' starting page</title>
+    <title>My JSP 'driver_event.jsp' starting page</title>
+    
+    <!-- Global CSS -->
+	<link href="<%=path%>/css/global.css" rel="stylesheet">
     
 	<%@ include file = "header.jsp" %>
-	
-	<!-- Global CSS -->
-	<link href="<%=path%>/css/global.css" rel="stylesheet">	
 
   </head>
   
@@ -23,7 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="page">
     	<div class="container">
 			<div class="row">
-					<div class="col-md-12 single_event_information">
+				<div class="col-md-7">
+					<div class="col-md-12 event_information">
 						<table style="width:100%">
 						<caption>Go to class</caption>
 						  <tr>
@@ -53,9 +54,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p>Driver</p>													
 							<p>From: Crystal City</p>
 							<p>To: GWU</p>												
-						</div>	
-						<div class="col-md-3 rating">
-						</div>									
+						</div>
+						<div class="col-md-3 user_status">
+							<button type="button" class="btn btn-success">Accept</button>
+							<button type="button" class="btn btn-danger">Decline</button>				
+						</div>					
 					</div>
 					<div class="col-md-12 user">
 						<div class="col-md-3 profile_image">
@@ -67,8 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p>From: Crystal City</p>
 							<p>To: GWU</p>												
 						</div>
-						<div class="col-md-3 rating">
-						</div>				
+						<div class="col-md-3 user_status">
+							<button type="button" class="btn btn-success">Accept</button>
+							<button type="button" class="btn btn-danger">Decline</button>				
+						</div>					
 					</div>	
 					<div class="col-md-12 user">
 						<div class="col-md-3 profile_image">
@@ -79,12 +84,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p>Rider</p>													
 							<p>From: Crystal City</p>
 							<p>To: GWU</p>												
-						</div>	
-						<div class="col-md-3 rating">
-						</div>			
+						</div>
+						<div class="col-md-3 user_status">
+							<button type="button" class="btn btn-success">Accept</button>
+							<button type="button" class="btn btn-danger">Decline</button>				
+						</div>					
 					</div>	
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-default"><a href="<%=path%>/view/launched_event.jsp">Launched Now!</a></button>
+					</div>
+							
+				</div>
+				<div class="col-md-5">
 				</div>
 			</div>
 		</div>
+    </div>
   </body>
 </html>

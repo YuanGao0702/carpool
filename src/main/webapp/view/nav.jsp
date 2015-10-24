@@ -10,7 +10,7 @@
                     <a href="../carpool/view/register.jsp">Don't have an Account?</a>                 
                 </li>                         
                	<li class="active" id="sign-in-li">
-                    <a href="" data-toggle="modal" data-target="#myModal">Sign In</a>                 
+                    <a href="../carpool/view/login.jsp">Sign In</a>                 
                 </li> 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome!<b class="caret"></b></a>
@@ -21,52 +21,7 @@
                             <a href="javascript:logout()">Sign Out</a>                 
                         </li>                      
                     </ul>
-                </li>
-              
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Sign In</h4>
-                            </div>
-                                                                        
-                            <form action="javascript:login()">
-                                <div class="modal-body">
-                                	<div id="error" class="error">
-                                		<p>Wrong Email or Password!</p>
-                                	</div>
-                                	<div class="text">
-                                		<label for="session_email">Email</label>
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            <i class="fa fa-envelope-o"></i>
-	                                        </span>
-	                                        <input type="text" name="email"/>
-	                                    </div>
-                                	</div>
-                                	<div class="text">
-                                		<label for="session_password">Password</label>
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon">
-	                                            <i class="fa fa-key"></i>
-	                                        </span>
-	                                        <input type="password" name="password"/>
-	                                    </div> 	
-                                	</div>                                                                       					    							    									    								    	
-                              	</div>
-
-	                            <div class="modal-footer">
-	                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                                <input type="submit" class="btn btn-primary" value="Sign In"/>     	                                                 
-	                            </div>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-
+                </li>                            
             </ul>
         </div>
         <!-- /.navbar-collapse -->

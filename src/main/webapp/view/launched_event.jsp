@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'rating.jsp' starting page</title>
+    <title>launched event</title>
     
 	<%@ include file = "header.jsp" %>
 	
@@ -20,9 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <%@ include file = "nav.jsp" %>
-    <div class="page">
+  <div class="page">
     	<div class="container">
 			<div class="row">
+				<div class="col-md-7">
 					<div class="col-md-12 single_event_information">
 						<table style="width:100%">
 						<caption>Go to class</caption>
@@ -48,43 +49,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="col-md-3 profile_image">
 						 <img alt="" src="<%=path%>/img/UserF.png">
 						</div>
-						<div class="col-md-6 user_information">							
+						<div class="col-md-9 user_information">							
 							<h4>Sherry</h4>
 							<p>Driver</p>													
 							<p>From: Crystal City</p>
 							<p>To: GWU</p>												
-						</div>	
-						<div class="col-md-3 rating">
-						</div>									
+						</div>										
 					</div>
 					<div class="col-md-12 user">
 						<div class="col-md-3 profile_image">
 						 <img alt="" src="<%=path%>/img/UserF.png">
 						</div>
-						<div class="col-md-6 user_information">							
+						<div class="col-md-9 user_information">							
 							<h4>Luna</h4>
 							<p>Rider</p>													
 							<p>From: Crystal City</p>
 							<p>To: GWU</p>												
-						</div>
-						<div class="col-md-3 rating">
 						</div>				
 					</div>	
 					<div class="col-md-12 user">
 						<div class="col-md-3 profile_image">
 						 <img alt="" src="<%=path%>/img/UserF.png">
 						</div>
-						<div class="col-md-6 user_information">							
+						<div class="col-md-9 user_information">							
 							<h4>Tommy</h4>
 							<p>Rider</p>													
 							<p>From: Crystal City</p>
 							<p>To: GWU</p>												
-						</div>	
-						<div class="col-md-3 rating">
-						</div>			
+						</div>				
 					</div>	
+					<div class="complete">
+						<a class="btn btn-default" href="<%=path%>/view/rating.jsp" role="button">Complete?</a>
+					</div>			
+				</div>
+				<div class="col-md-5">
 				</div>
 			</div>
 		</div>
+    </div>
   </body>
 </html>

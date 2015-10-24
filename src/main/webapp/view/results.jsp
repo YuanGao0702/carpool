@@ -61,9 +61,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<div class="col-md-10">					
-						<div class="col-md-12 room">
-							<h3 class="col-md-12"><a href="<%=path%>/view/pending_room.jsp">go to class</a></h3>
-							<div class="col-md-10 room_information">							
+					<div class="col-md-12 event">
+						<h3 class="col-md-12"><a href="<%=path%>/view/pending_event.jsp">go to class</a></h3>
+							<div class="col-md-10 event_information">							
 								<table style="width:100%">					
 								  <tr>
 								    <td>Location:</td>
@@ -79,14 +79,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  </tr>						  
 								</table>												
 							</div>
-							<div class="col-md-2 room_join">
+							<div class="col-md-2 event_join">
 								<button type="button" class="btn btn-xs btn-success">Join</button>
 								<!-- <button type="button" class="btn btn-xs btn-danger">Recall</button> -->
 							</div>										
 						</div>				
-						<div class="col-md-12 room">
-							<h3 class="col-md-12"><a href="<%=path%>/view/pending_room.jsp">Room2</a></h3>
-							<div class="col-md-10 room_information">							
+						<div class="col-md-12 event">
+							<h3 class="col-md-12"><a href="<%=path%>/view/pending_event.jsp">event2</a></h3>
+							<div class="col-md-10 event_information">							
 								<table style="width:100%">					
 								  <tr>
 								    <td>Location:</td>
@@ -102,14 +102,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  </tr>						  
 								</table>												
 							</div>
-							<div class="col-md-2 room_join">
+							<div class="col-md-2 event_join">
 								<button type="button" class="btn btn-xs btn-success">Join</button>
 								<!-- <button type="button" class="btn btn-xs btn-danger">Recall</button> -->
 							</div>										
 						</div>		
-						<div class="col-md-12 room">
-							<h3 class="col-md-12"><a href="<%=path%>/view/pending_room.jsp">Room3</a></h3>
-							<div class="col-md-10 room_information">							
+						<div class="col-md-12 event">
+							<h3 class="col-md-12"><a href="<%=path%>/view/pending_event.jsp">event3</a></h3>
+							<div class="col-md-10 event_information">							
 								<table style="width:100%">					
 								  <tr>
 								    <td>Location:</td>
@@ -125,14 +125,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  </tr>						  
 								</table>												
 							</div>
-							<div class="col-md-2 room_join">
+							<div class="col-md-2 event_join">
 								<button type="button" class="btn btn-xs btn-success">Join</button>
 								<!-- <button type="button" class="btn btn-xs btn-danger">Recall</button> -->
 							</div>										
 						</div>		
-						<div class="col-md-12 room">
-							<h3 class="col-md-12"><a href="<%=path%>/view/pending_room.jsp">Room4</a></h3>
-							<div class="col-md-10 room_information">							
+						<div class="col-md-12 event">
+							<h3 class="col-md-12"><a href="<%=path%>/view/pending_event.jsp">event4</a></h3>
+							<div class="col-md-10 event_information">							
 								<table style="width:100%">					
 								  <tr>
 								    <td>Location:</td>
@@ -148,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								  </tr>						  
 								</table>												
 							</div>
-							<div class="col-md-2 room_join">
+							<div class="col-md-2 event_join">
 								<button type="button" class="btn btn-xs btn-success">Join</button>
 								<!-- <button type="button" class="btn btn-xs btn-danger">Recall</button> -->
 							</div>										
