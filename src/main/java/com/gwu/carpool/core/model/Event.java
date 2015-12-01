@@ -2,6 +2,7 @@ package com.gwu.carpool.core.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import java.util.List;
 
 
@@ -87,6 +88,7 @@ public class Event {
 		this.publishTime = publishTime;
 	}
 
+
 	public String getStartAddress() {
 		return startAddress;
 	}
@@ -103,7 +105,6 @@ public class Event {
 		this.endAddress = endAddress;
 	}
 
-
 	public User getDriver() {
 		return driver;
 	}
@@ -116,23 +117,28 @@ public class Event {
 		return pending;
 	}
 
+
 	public void setDriver(User driver) {
 		this.driver = driver;
 	}
+
 
 	public void setPassengers(ArrayList<User> passengers) {
 		this.passengers = passengers;
 	}
 
+
 	public void setPending(ArrayList<User> pending) {
 		this.pending = pending;
 	}
+
 
 	public String getCapacity() {
 		return capacity;
 	}
 
 	public void setCapacity(String capacity) {
+
 		this.capacity = capacity;
 	}
 
@@ -151,6 +157,7 @@ public class Event {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 
 	public String getStatus() {

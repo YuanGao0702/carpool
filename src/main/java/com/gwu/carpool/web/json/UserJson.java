@@ -8,13 +8,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserJson {
 	
+
 	private String id;
+
     private String email;
     private String username;
     private String gender;
     private String phone;
     private String password;
     private String reputation;
+
 
     public UserJson() {}
 
@@ -66,6 +69,7 @@ public class UserJson {
 	public String getReputation() {
 		return reputation;
 	}
+
 
 
     

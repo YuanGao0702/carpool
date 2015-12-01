@@ -3,6 +3,7 @@ package com.gwu.carpool.api.dao;
 import com.gwu.carpool.core.model.*;
 
 import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public interface CarpoolDAO {
     public void addPendingToEvent(Event evt, User usr);
     public void addPassengerToEvent(Event evt, User usr);
     public void changeEventStatus(Event evt, String stat);
+
     //delete
     public Optional<User> deleteUser(String user);
     

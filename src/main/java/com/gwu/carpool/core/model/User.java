@@ -2,11 +2,13 @@ package com.gwu.carpool.core.model;
 
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 public class User {
 
 	private String id;
+
     private String email;
     private String username;
     private String gender;
@@ -18,12 +20,14 @@ public class User {
     public User(String email, String username, String gender,
 			String phone, String password, String reputation) {
 		super();
+
 		this.email = email;
 		this.username = username;
 		this.gender = gender;
 		this.phone = phone;
 		this.password = password;
 		this.reputation = reputation;
+
 	}
     
     public User(){
@@ -67,6 +71,7 @@ public class User {
     }
 
     public void setId(String id) {
+
         this.id = id;
     }
 

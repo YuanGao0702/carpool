@@ -1,5 +1,6 @@
 package com.gwu.carpool.api.dao.impl;
 
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,18 +20,21 @@ import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+
 import com.mongodb.client.MongoDatabase;
 
 public class MongoDAO implements CarpoolDAO {
 
+
 	static String dataBaseName = "carpool";
 	static String userCollectionName = "user";
 	static String eventCollectionName = "event";
+
 	
 	public MongoDAO(String dataBaseName){
 		this.dataBaseName = dataBaseName;
 	}
-	
+
 	public static void main(String[] args) {
 		MongoDAO dao = new MongoDAO("carpool");
 		MongoClient mongoClient = new MongoClient();
@@ -104,11 +108,12 @@ public class MongoDAO implements CarpoolDAO {
 		ObjectId oi = (ObjectId)doc.get("_id");
 		event.setId(oi.toHexString());
 		mongoClient.close();
+
 	}
 
 	@Override
 	public Optional<User> getUserByEmail(String email) {
-		
+
 		MongoClient mongoClient = new MongoClient();
 		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
 		
@@ -178,11 +183,13 @@ public class MongoDAO implements CarpoolDAO {
 
 	@Override
 	public List<Event> getEventsByUserID(String userId) {
+
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+
 	public List<Event> getEventsByDepartureTime(Date date) {
 		// TODO Auto-generated method stub
 		return null;
@@ -196,6 +203,7 @@ public class MongoDAO implements CarpoolDAO {
 
 	@Override
 	public List<Event> getEventsByUserIdAsPending(String userId) {
+
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -277,5 +285,6 @@ public class MongoDAO implements CarpoolDAO {
         user.setReputation(document.getString("reputation"));
 		return user;
 	}
+
 	
 }

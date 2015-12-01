@@ -13,17 +13,21 @@ import com.gwu.carpool.core.model.User;
 public class MockDAO implements CarpoolDAO{
 
 	@Override
+
 	public void createUser(User user) {
 	}
 	
 	public void createEvent(Event event) {
+
 	}
 
 	@Override
 	public Optional<User> getUserByEmail(String email) {
 		if(email.equals("liuqi627@gwu.edu")){
+
 			User result = new User("liuqi627@gwu.edu", "liuqi627", "male",
 					"4438086967", "liuqi627", "5");
+
 			return Optional.of(result);
 		}
 		return Optional.empty();
@@ -31,6 +35,7 @@ public class MockDAO implements CarpoolDAO{
 
 	@Override
 	public List<User> getAllUsers() {
+
 		// TODO Auto-generated method stub
 		return null;
 	}
