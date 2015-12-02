@@ -11,13 +11,11 @@ carpoolCtrl.controller('aboutController', function($scope) {
     $scope.message = 'Look! I am an about page.';
 });
 
-carpoolCtrl.controller('loginController', function($scope, $http) {
+carpoolCtrl.controller('loginController', function($scope, $http, $cookieStore) {
 		 	console.log("loginController");
 		 	$scope.login = function() {		 		
 		 		console.log("login");	 		
-		 		$http.get('http://10.198.8.254:8080/api/login/', {params:{"email": $scope.user.email, 
-			 															"password": $scope.user.password
-			 															}}).success(function (response) {	 			
+		 		$http.get('http://localhost:8080/api/login/request'+ '?email=' + $scope.user.email + '&password=' + $scope.user.password, $scope.user).success(function (response) {			
 		 			$scope.user = response;
 		 			$cookieStore.put('user', $scope.user);
 		 			console.log('response:', $scope.user);
