@@ -147,10 +147,19 @@ public class MongoDAO implements CarpoolDAO {
 		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
 		MongoCollection<Document> coll = db.getCollection(userCollectionName);
 		
-		Document doc = coll.find(new Document("email", email)).first();
-		User user = userDocToUser(doc);
-		mongoClient.close();
-		return Optional.of(user);
+		try{
+			Document doc = coll.find(new Document("email", email)).first();
+			Optional<User> user = Optional.of(userDocToUser(doc));
+			
+			return user;
+		}
+		catch(Exception e){
+			return Optional.empty();
+		}
+		finally{
+			mongoClient.close();
+		}
+		
 	}
 
 	@Override

@@ -39,7 +39,9 @@ public class SignupResource {
 	    public Response createUser(@QueryParam("email") String email, @QueryParam("password") String password,
 	    						   @QueryParam("gender") String gender, @QueryParam("phone") String phone,
 	    						   @QueryParam("username") String username) {
+			System.err.println("aaaaa" +  email + username + gender + "aaaaa");
 			Optional<User> result = api.createUser(email, username, gender, phone, password, "");
+			
 	        if (result.isPresent()) {
 	            return Response.ok(new UserJson(result.get())).build();
 //	        	return Response.ok("email got called").build();

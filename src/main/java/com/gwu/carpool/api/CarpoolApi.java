@@ -1,12 +1,12 @@
 package com.gwu.carpool.api;
 
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import com.gwu.carpool.api.dao.CarpoolDAO;
+import com.gwu.carpool.api.dao.impl.MongoDAO;
 import com.gwu.carpool.core.model.Event;
 import com.gwu.carpool.core.model.User;
 import com.gwu.carpool.core.model.Event;
@@ -18,6 +18,14 @@ public class CarpoolApi{
 	public CarpoolApi(CarpoolDAO dao){
 		this.dao = dao;
 	}
+	
+	
+	public static void main(String[] args) {
+		User user = new User("mao@gmail.com","gouuser","male","12312367","123445","");
+		 CarpoolDAO dao = new MongoDAO("carpool");
+		 dao.createUser(user);
+	}
+	
 	//User
 	public Optional<User> getUserByEmail(String email) {
         Optional<User> result = dao.getUserByEmail(email);
@@ -33,12 +41,17 @@ public class CarpoolApi{
 
 	public Optional<User> createUser(String email, String username, String gender,
 			String phone, String password, String reputation){
-		if((dao.getUserByEmail(email)).isPresent()){
-			throw new IllegalArgumentException("User with this email is ready exist! ");
+		Optional<User> r = this.getUserByEmail(email);
+		
+		if(r.isPresent()){
+			return Optional.empty();
 		}
 		User user = new User(email, username, gender, phone, password, reputation);
+		System.err.println(user.toString());
 		dao.createUser(user);
+		System.err.println("bbbbbbbbbbbb");
 		Optional<User> result = dao.getUserByEmail(email);
+		System.err.println("cccccccccccccc");
 		return result;
 	}
 	
