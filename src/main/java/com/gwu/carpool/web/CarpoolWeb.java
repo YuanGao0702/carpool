@@ -7,8 +7,7 @@ import com.gwu.carpool.api.dao.CarpoolDAO;
 import com.gwu.carpool.api.dao.impl.MockDAO;
 import com.gwu.carpool.api.dao.impl.MongoDAO;
 import com.gwu.carpool.web.health.CarpoolHealthCheck;
-import com.gwu.carpool.web.resources.EventResource;
-import com.gwu.carpool.web.resources.UserResource;
+import com.gwu.carpool.web.resources.*;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
@@ -36,13 +35,15 @@ public class CarpoolWeb extends Application<CarpoolConfiguration> {
 		//final CarpoolDAO dao = new MockDAO();
         final CarpoolApi api = new CarpoolApi(dao);
         final UserResource resourceUser = new UserResource(api);
+        final LoginResource resourceLogin = new LoginResource(api);
         final EventResource resourceEvent = new EventResource(api);
         final CarpoolHealthCheck healthCheck = new CarpoolHealthCheck();
         environment.healthChecks().register("carpool", healthCheck);
-        //configureCors(environment);
+        configureCors(environment);
 
         environment.jersey().register(resourceUser);
         environment.jersey().register(resourceEvent);
+        environment.jersey().register(resourceLogin);
 		
 	}
 	

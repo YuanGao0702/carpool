@@ -15,9 +15,10 @@ carpoolCtrl.controller('loginController', function($scope, $http, $cookieStore) 
 		 	console.log("loginController");
 
 		 	$scope.login = function() {
-		 		console.log($scope.user);
-		 		console.log("login");
-		 		$http.get('http://localhost:8080/api/user/liuqi627@gwu.edu', $scope.user).success(function (response) {
+		 		// console.log($scope.user);
+		 		//console.log("login");
+		 		console.log("started!!!!");
+		 		$http.get('http://localhost:8080/api/login/request'+ '?email=' + $scope.user.email + '&password=' + $scope.user.password, $scope.user).success(function (response) {
 		 			console.log(response);
 		 			$scope.user = response;
 		 			$cookieStore.put('user', $scope.user);
