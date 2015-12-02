@@ -7,16 +7,21 @@ import com.gwu.carpool.api.dao.CarpoolDAO;
 import com.gwu.carpool.api.dao.impl.MockDAO;
 import com.gwu.carpool.api.dao.impl.MongoDAO;
 import com.gwu.carpool.web.health.CarpoolHealthCheck;
+import com.gwu.carpool.web.resources.EventResource;
 import com.gwu.carpool.web.resources.UserResource;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
 import java.util.EnumSet;
+
 import org.eclipse.jetty.servlets.CrossOriginFilter;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration.Dynamic;
+
 import static org.eclipse.jetty.servlets.CrossOriginFilter.*;
+
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 
@@ -27,15 +32,17 @@ public class CarpoolWeb extends Application<CarpoolConfiguration> {
 
 	@Override
 	public void run(CarpoolConfiguration configuration, Environment environment) throws Exception {
-		//final CarpoolDAO dao = new MongoDAO(configuration.getMongoDatabaseName());
-		final CarpoolDAO dao = new MockDAO();
+		final CarpoolDAO dao = new MongoDAO(configuration.getMongoDatabaseName());
+		//final CarpoolDAO dao = new MockDAO();
         final CarpoolApi api = new CarpoolApi(dao);
-        final UserResource resource = new UserResource(api);
+        final UserResource resourceUser = new UserResource(api);
+        final EventResource resourceEvent = new EventResource(api);
         final CarpoolHealthCheck healthCheck = new CarpoolHealthCheck();
         environment.healthChecks().register("carpool", healthCheck);
         //configureCors(environment);
 
-        environment.jersey().register(resource);
+        environment.jersey().register(resourceUser);
+        environment.jersey().register(resourceEvent);
 		
 	}
 	

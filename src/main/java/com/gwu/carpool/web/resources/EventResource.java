@@ -14,27 +14,29 @@ import javax.ws.rs.core.Response;
 
 import com.codahale.metrics.annotation.Timed;
 import com.gwu.carpool.api.CarpoolApi;
+import com.gwu.carpool.core.model.Event;
 import com.gwu.carpool.core.model.User;
+import com.gwu.carpool.web.json.EventJson;
 import com.gwu.carpool.web.json.UserJson;
 
-@Path("/api/user")
+@Path("/api/event")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource {
+public class EventResource {
 	
 		private CarpoolApi api;
 		
 		//constructor
-		public UserResource(CarpoolApi api) {
+		public EventResource(CarpoolApi api) {
 	        this.api = api;
 	    }
 		
 		@GET
 	    @Produces(MediaType.APPLICATION_JSON)
-	    public Response getAllUsers() {
-	        List<User> users = api.getAllUsers();
-	        List<UserJson> jsons = new ArrayList<UserJson>();
-	        for(User one : users){
-	        	UserJson uj = new UserJson(one);
+	    public Response getAllEvents() {
+	        List<Event> events = api.getAllEvents();
+	        List<EventJson> jsons = new ArrayList<EventJson>();
+	        for(Event one : events){
+	        	EventJson uj = new EventJson(one);
 	        	jsons.add(uj);
 	        }
 	        //Stream<UserJson> jsons = users.parallelStream().map(u -> new UserJson(u));

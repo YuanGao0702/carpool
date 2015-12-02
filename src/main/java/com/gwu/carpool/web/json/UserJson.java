@@ -10,7 +10,6 @@ public class UserJson {
 	
 
 	private String id;
-
     private String email;
     private String username;
     private String gender;
@@ -35,37 +34,37 @@ public class UserJson {
         return new User(email, username, gender, phone, password, reputation);
     }
     
-    @JsonProperty
+    @JsonProperty("id")
 	public String getId() {
 		return id;
 	}
     
-    @JsonProperty
+    @JsonProperty("email")
 	public String getEmail() {
 		return email;
 	}
     
-    @JsonProperty
+    @JsonProperty("username")
 	public String getUsername() {
 		return username;
 	}
     
-    @JsonProperty
+    @JsonProperty("gender")
 	public String getGender() {
 		return gender;
 	}
     
-    @JsonProperty
+    @JsonProperty("phone")
 	public String getPhone() {
 		return phone;
 	}
     
-    @JsonProperty
+    @JsonProperty("password")
 	public String getPassword() {
 		return password;
 	}
     
-    @JsonProperty
+    @JsonProperty("reputation")
 	public String getReputation() {
 		return reputation;
 	}
