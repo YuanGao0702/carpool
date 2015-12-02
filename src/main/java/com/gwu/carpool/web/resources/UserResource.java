@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.stream.Stream;
 
 import com.codahale.metrics.annotation.Timed;
 import com.gwu.carpool.api.CarpoolApi;
@@ -46,6 +47,7 @@ public class UserResource {
 	    @Path("/{email}")
 	    @Timed
 	    public Response getUserByEmail(@PathParam("email") String email) {
+
 	        Optional<User> result = api.getUserByEmail(email);
 	        if (result.isPresent()) {
 	            return Response.ok(new UserJson(result.get())).build();
@@ -54,17 +56,8 @@ public class UserResource {
 	            return Response.status(Response.Status.NOT_FOUND).build();
 	        }
 	    }
+
+
 		
-		@GET
-	    @Path("/{email}/{gender}")
-	    @Timed
-	    public Response getProfile(@PathParam("gender") String email) {
-	        Optional<User> result = api.getUserByEmail(email);
-	        if (result.isPresent()) {
-	            //return Response.ok(new UserJson(result.get())).build();
-	        	return Response.ok("gender got called").build();
-	        } else {
-	            return Response.status(Response.Status.NOT_FOUND).build();
-	        }
-	    }
+		
 }
