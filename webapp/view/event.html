@@ -1,0 +1,49 @@
+   <div class="page">
+    	<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="col-md-12 event_information">
+						<table style="width:100%">
+						<caption>Go to class</caption>
+						  <tr>
+										<td>Location:</td>
+										<td>{{event.location}}</td>		
+										<td>Estimate Price:</td>
+										<td>${{event.price}}/person</td>
+									</tr>
+									<tr>
+										<td>Date:</td>
+										<td>{{event.date}}</td>		
+										<td>Total People:</td>
+										<td>{{event.capacity}}</td>
+									</tr>
+						</table>
+					</div>
+					
+					<div id="userlist">
+						<div ng-repeat="user in event.users" class="col-md-12 user">
+							<div class="col-md-3 profile_image">
+							 <img alt="" src="img/UserF.png">
+							</div>
+							<div class="col-md-6 user_information">							
+								<h4>{{user.name}}</h4>
+								<p>{{user.role}}</p>													
+																			
+							</div>
+							<div ng-if="user.status" class="col-md-3 user_status">
+								<button type="button" class="btn btn-success">Accept</button>
+								<button type="button" class="btn btn-danger">Decline</button>				
+							</div>					
+						</div>
+						
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-default"><a href="<%=path%>/view/launched_event.jsp">Launched Now!</a></button>
+						</div>
+					</div>
+							
+				</div>
+				<div class="col-md-5">
+				</div>
+			</div>
+		</div>
+    </div>

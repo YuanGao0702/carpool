@@ -43,6 +43,11 @@ var gwuCarpool = angular.module('gwuCarpool', ['ngRoute', 'carpoolCtrl']);
            templateUrl : 'view/rider_info.html',
            controller  : 'riderInfoController'
            })
+           
+           .when('/event/:eventId', {
+           templateUrl : 'view/event.html',
+           controller  : 'eventController'
+           })
        
    }]);
 

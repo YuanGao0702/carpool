@@ -1,27 +1,44 @@
-[
-  {
+{
+  "id": 1,
   "title": "go to school",
   "location": "GWU",
   "price": "15",
   "capacity": "5",
   "date": "12/02/2015",
-  "pending": false
-  },
-  {
-  "title": "go to supermarket",
-  "location": "good fortune",
-  "price": "20",
-  "capacity": "4",
-  "date": "11/22/2015",
-  "pending": false
-  },
-  {
-  "title": "go to white house",
-  "location": "white house",
-  "price": "29",
-  "capacity": "3",
-  "date": "12/23/2015",
-  "pending": false
+  "driver": "2",
+  "users": 
+  [
+	{
+	  "name": "sherry",
+	  "password": "111",
+	  "gender": "female",
+	  "phone": "202-602-8333",
+	  "email": "zyfacatch@gmail.com",
+	  "role": "rider"
+	  },
+	  {
+	  "name": "2",
+	  "password": "111",
+	  "gender": "female",
+	  "phone": "202-602-8333",
+	  "email": "zyfacatch@gmail.com",
+	  "role": "driver"
+	  },
+	  {
+	  "name": "3",
+	  "password": "111",
+	  "gender": "female",
+	  "phone": "202-602-8333",
+	  "email": "zyfacatch@gmail.com",
+	  "role": "rider"
+	  },
+	  {
+	  "name": "4",
+	  "password": "111",
+	  "gender": "female",
+	  "phone": "202-602-8333",
+	  "email": "zyfacatch@gmail.com",
+	  "role": "rider"
+	  }
+	] 
   }
-
-]
