@@ -36,6 +36,7 @@ public class CarpoolWeb extends Application<CarpoolConfiguration> {
         final CarpoolApi api = new CarpoolApi(dao);
         final UserResource resourceUser = new UserResource(api);
         final LoginResource resourceLogin = new LoginResource(api);
+        final SignupResource resourceSignup = new SignupResource(api);
         final EventResource resourceEvent = new EventResource(api);
         final CarpoolHealthCheck healthCheck = new CarpoolHealthCheck();
         environment.healthChecks().register("carpool", healthCheck);
@@ -44,6 +45,7 @@ public class CarpoolWeb extends Application<CarpoolConfiguration> {
         environment.jersey().register(resourceUser);
         environment.jersey().register(resourceEvent);
         environment.jersey().register(resourceLogin);
+        environment.jersey().register(resourceSignup);
 		
 	}
 	

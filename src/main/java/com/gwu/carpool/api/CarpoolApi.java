@@ -31,14 +31,15 @@ public class CarpoolApi{
 		return au;
 	}
 
-	public User createUser(String email, String username, String gender,
+	public Optional<User> createUser(String email, String username, String gender,
 			String phone, String password, String reputation){
 		if((dao.getUserByEmail(email)).isPresent()){
 			throw new IllegalArgumentException("User with this email is ready exist! ");
 		}
 		User user = new User(email, username, gender, phone, password, reputation);
 		dao.createUser(user);
-		return user;
+		Optional<User> result = dao.getUserByEmail(email);
+		return result;
 	}
 	
 	public User updateUser(String email, String username, String gender,

@@ -21,34 +21,30 @@ import com.gwu.carpool.core.model.User;
 import com.gwu.carpool.web.json.UserJson;
 
 
-@Path("/api/login")
+@Path("/api/signup")
 @Produces(MediaType.APPLICATION_JSON)
-public class LoginResource {
+public class SignupResource {
 	
 		private CarpoolApi api;
 		
 		//constructor
-		public LoginResource(CarpoolApi api) {
+		public SignupResource(CarpoolApi api) {
 	        this.api = api;
 	    }
 		
-		@GET
-		public Response sayHello(){
-			return Response.ok().entity("hello!").build();
-		}
 		
 		@GET
 		@Path("/request")
 	    @Timed
-	    public Response getUserByEmail(@QueryParam("email") String email, @QueryParam("password") String password) {
-			System.err.println(email);
-			System.err.println(password);
-	        Optional<User> result = api.getUserByEmail(email);
-	        if (result.isPresent() && result.get().getPassword().equals(password)) {
+	    public Response createUser(@QueryParam("email") String email, @QueryParam("password") String password,
+	    						   @QueryParam("gender") String gender, @QueryParam("phone") String phone,
+	    						   @QueryParam("username") String username) {
+			Optional<User> result = api.createUser(email, username, gender, phone, password, "");
+	        if (result.isPresent()) {
 	            return Response.ok(new UserJson(result.get())).build();
 //	        	return Response.ok("email got called").build();
 	        } else {
-	            return Response.status(Response.Status.NOT_FOUND).entity("login failed!").build();
+	            return Response.status(Response.Status.NOT_FOUND).entity("signup failed!").build();
 	        	//return Response.ok("fuck u!").build();
 	        }
 	    }
