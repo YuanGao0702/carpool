@@ -43,9 +43,12 @@ public class SignupResource {
 			Optional<User> result = api.createUser(email, username, gender, phone, password, "");
 			
 	        if (result.isPresent()) {
+	        	System.err.println("wwwwwwwwww");
+	        	System.err.println(result.get().toString());
 	            return Response.ok(new UserJson(result.get())).build();
 //	        	return Response.ok("email got called").build();
 	        } else {
+	        	System.err.println("55555555555");
 	            return Response.status(Response.Status.NOT_FOUND).entity("signup failed!").build();
 	        	//return Response.ok("fuck u!").build();
 	        }
