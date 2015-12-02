@@ -13,10 +13,14 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
 import java.util.EnumSet;
+
 import org.eclipse.jetty.servlets.CrossOriginFilter;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration.Dynamic;
+
 import static org.eclipse.jetty.servlets.CrossOriginFilter.*;
+
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 

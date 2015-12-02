@@ -112,8 +112,14 @@ public class MockDAO implements CarpoolDAO{
 	}
 
 	@Override
-	public Event getEventByTitleAndPublishTimeAndDriverId(String title,
-			Date publishtime, String driverId) {
+	public Event getEventByTitleAndPublishTimeAndDriverId(
+			String title, Date publishtime, String driverId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Event updateEvent(Event event) {
 		// TODO Auto-generated method stub
 		return null;
 	}

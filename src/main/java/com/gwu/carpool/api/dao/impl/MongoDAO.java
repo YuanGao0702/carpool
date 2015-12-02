@@ -397,5 +397,11 @@ public class MongoDAO implements CarpoolDAO {
 		return evt;
 	}
 
+	@Override
+	public Event updateEvent(Event event) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

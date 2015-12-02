@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.stream.Stream;
 
 import com.codahale.metrics.annotation.Timed;
 import com.gwu.carpool.api.CarpoolApi;
@@ -29,7 +30,7 @@ public class UserResource {
 		@GET
 	    @Path("/{email}")
 	    @Timed
-	    public Response getProfile(@PathParam("email") String email) {
+	    public Response getUser(@PathParam("email") String email) {
 	        Optional<User> result = api.getUserByEmail(email);
 	        if (result.isPresent()) {
 	            return Response.ok(new UserJson(result.get())).build();
@@ -37,4 +38,14 @@ public class UserResource {
 	            return Response.status(Response.Status.NOT_FOUND).build();
 	        }
 	    }
+		
+		@GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    public Response getAllUsers() {
+	        List<User> users = api.getAllUser();
+	        Stream<UserJson> jsons = users.parallelStream().map(u -> new UserJson(u));
+	        return Response.ok(jsons.toArray()).build();
+	    }
+		
+		
 }
