@@ -52,12 +52,13 @@ public class Event {
 	}
 	
 	public String toString(){
-		return String.format("Event(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", id, title, departureTime, startAddress, endAddress, driver.toString(), 
+		return String.format("Event(%s,\n %s,\n %s,\n %s,\n %s,\n driver: %s,\n\n passengers: %s,\n\n pending: %s,\n\n %s,\n %s,\n %s,\n %s\n)", id, title, departureTime, startAddress, endAddress, driver.toString(), 
 				toStringListOfUsers(passengers),toStringListOfUsers(pending), capacity, description, status, publishTime);
     }
 	
 	public String toStringListOfUsers(List<User> lu){
 		String result = "";
+		if(lu == null) return result;
 		for(User usr : lu){
 			result += usr.toString();
 		}

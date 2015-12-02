@@ -10,7 +10,11 @@ import java.util.Optional;
 import javassist.expr.NewArray;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import org.joda.time.DateTime;
+
+import ch.qos.logback.core.filter.Filter;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.gwu.carpool.api.dao.CarpoolDAO;
@@ -20,8 +24,10 @@ import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+
+import static com.mongodb.client.model.Filters.*;
 
 public class MongoDAO implements CarpoolDAO {
 
@@ -47,20 +53,43 @@ public class MongoDAO implements CarpoolDAO {
 				"2028180726", "123456", "good");
 		User user2 = new User("haha@gmail.com", "haha Guo", "female",
 				"2028180733", "123456", "bad");
+		User user3 = new User("3@gmail.com", "3 Guo", "female",
+				"2028180712", "123456", "brilliant");
 		
 		dao.createUser(user1);
 		dao.createUser(user2);
+		dao.createUser(user3);
+		
+
+		Event evt1 = new Event("Let's go to Columbia Plaza", new Date(), 
+				"2000 s eads st nw, VA", "500 23rd st NW, DC", user1, null, null, 
+				"5", "this is description", "waiting", new Date());
+		//System.err.println(evt1);
+		dao.createEvent(evt1);
+		dao.addPendingToEvent(evt1.getId(), user2);
+		dao.addPendingToEvent(evt1.getId(), user3);
+		dao.addPassengerToEvent(evt1.getId(), user2);
+		//dao.removePendingFromEvent(evt1.getId(), user3);
+		
+		System.err.println("----------------------------------------------------------------");
+		
+//		List<Event> lhaha = dao.getEventsByUserIdAsDriver(user1.getId());
+//		for(Event evt : lhaha){
+//			System.err.println(evt.toString());
+//		}
+		
+		//test changeEventStatus
+		dao.changeEventStatusById(evt1.getId(), "fuck");
+		
+		dao.deleteUserById(user3.getId());
 		List<User> lu = dao.getAllUsers();
 		for(User usr : lu){
 			System.err.println(usr.toString());
 		}
-		Event evt1 = new Event("Let's go to Columbia Plaza", new Date(), 
-				"2000 s eads st nw, VA", "500 23rd st NW, DC", user1, null, null, 
-				"5", "this is description", "waiting", new Date());
-		dao.createEvent(evt1);
+		System.err.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		//System.err.println(dao.getEventByTitleAndPublishTimeAndDriverId(evt1.getTitle(), evt1.getPublishTime(), evt1.getDriver().getId()));
 		
-		System.err.println("----------------------------------------------------------------");
-		List<Event> le = dao.getAllEvents();
+		List<Event> le = dao.getEventsByDepartureTime(new Date());
 		for(Event evt : le){
 			System.err.println(evt.toString());
 		}
@@ -171,71 +200,139 @@ public class MongoDAO implements CarpoolDAO {
 
 	@Override
 	public User updateUser(User user) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
-	public Optional<User> deleteUser(String user) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteUserById(String userId) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(userCollectionName);
+		
+		Bson match = new Document("_id", new ObjectId(userId));
+		coll.deleteOne(match);
+		mongoClient.close();
 	}
 
 	@Override
-	public List<Event> getEventsByUserID(String userId) {
-
-		// TODO Auto-generated method stub
-		return null;
+	public List<Event> getEventsByUserIdAsDriver(String userId) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Bson filter = new Document("driver._id", new ObjectId(userId));
+		List<Document> ld = coll.find(filter).into(new ArrayList<Document>());
+		List<Event> le = new ArrayList<Event>();
+		for(Document d : ld){
+			le.add(eventDocToEvent(d));
+		}
+		mongoClient.close();
+		return le;
 	}
 
 	@Override
 
 	public List<Event> getEventsByDepartureTime(Date date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Event> getEventsByUserIdAsDriver(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Bson filter = new Document("departureTime", new Document("$lte", new DateTime().toDate()));
+		List<Document> ld = coll.find(filter).into(new ArrayList<Document>());
+		List<Event> le = new ArrayList<Event>();
+		for(Document d : ld){
+			le.add(eventDocToEvent(d));
+		}
+		mongoClient.close();
+		return le;
 	}
 
 	@Override
 	public List<Event> getEventsByUserIdAsPending(String userId) {
-
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Bson filter = new Document("pending._id", new ObjectId(userId));
+		List<Document> ld = coll.find(filter).into(new ArrayList<Document>());
+		List<Event> le = new ArrayList<Event>();
+		for(Document d : ld){
+			le.add(eventDocToEvent(d));
+		}
+		mongoClient.close();
+		return le;
 	}
 
 	@Override
 	public List<Event> getEventsByUserIdAsPassenger(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Bson filter = new Document("passengers._id", new ObjectId(userId));
+		List<Document> ld = coll.find(filter).into(new ArrayList<Document>());
+		List<Event> le = new ArrayList<Event>();
+		for(Document d : ld){
+			le.add(eventDocToEvent(d));
+		}
+		mongoClient.close();
+		return le;
 	}
 
 	@Override
-	public void removePendingFromEvent(Event evt, User usr) {
-		// TODO Auto-generated method stub
+	public void removePendingFromEvent(String evtId, User usr) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Bson match = new Document("_id", new ObjectId(evtId));
+		Bson update = new Document("pending", new Document("_id", new ObjectId(usr.getId())));
+		coll.updateOne(match, new Document("$pull", update));
 		
 	}
 
 	@Override
-	public void addPendingToEvent(Event evt, User usr) {
-		// TODO Auto-generated method stub
+	public void addPendingToEvent(String evtId, User usr) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		Document doc = userToUserDoc(usr);
+		coll.updateOne(new Document("_id", new ObjectId(evtId)), new Document("$addToSet", new Document("pending", doc)));
+		mongoClient.close();
+	}
+
+	@Override
+	public void addPassengerToEvent(String evtId, User usr) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		Document doc = userToUserDoc(usr);
+		coll.updateOne(new Document("_id", new ObjectId(evtId)), new Document("$addToSet", new Document("passengers", doc)));
+		mongoClient.close();
 		
 	}
 
 	@Override
-	public void addPassengerToEvent(Event evt, User usr) {
-		// TODO Auto-generated method stub
+	public void changeEventStatusById(String eventId, String stat) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		coll.updateOne(new Document("_id", new ObjectId(eventId)), new Document("$set", new Document("status", stat)));
+		mongoClient.close();
 		
 	}
 
-	@Override
-	public void changeEventStatus(Event evt, String stat) {
-		// TODO Auto-generated method stub
-		
+	public static Document userToUserDoc(User user){
+		Document doc = new Document("email",user.getEmail())
+        .append("gender", user.getGender())
+        .append("phone", user.getPhone())
+        .append("password", user.getPassword())
+        .append("reputation", user.getReputation())
+        .append("_id", new ObjectId(user.getId()))
+        .append("username", user.getUsername());
+		return doc;
 	}
 	
 	public static Event eventDocToEvent(Document document){
@@ -284,6 +381,20 @@ public class MongoDAO implements CarpoolDAO {
         user.setPassword(document.getString("password"));
         user.setReputation(document.getString("reputation"));
 		return user;
+	}
+
+	@Override
+	public Event getEventByTitleAndPublishTimeAndDriverId(String title,
+			Date publishtime, String driverId) {
+		Bson filter = and(eq("title", title), eq("driver._id", new ObjectId(driverId)), eq("publishTime", publishtime));
+		
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Event evt = eventDocToEvent(coll.find(filter).first());
+		mongoClient.close();
+		return evt;
 	}
 
 	

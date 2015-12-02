@@ -46,17 +46,8 @@ public class MockDAO implements CarpoolDAO{
 		return null;
 	}
 
-	@Override
-	public Optional<User> deleteUser(String user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<Event> getEventsByUserID(String userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<Event> getEventsByDepartureTime(Date date) {
@@ -89,27 +80,44 @@ public class MockDAO implements CarpoolDAO{
 	}
 
 	@Override
-	public void removePendingFromEvent(Event evt, User usr) {
+	public void removePendingFromEvent(String evtId, User usr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void changeEventStatusById(String evtId, String stat) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addPendingToEvent(Event evt, User usr) {
+	public void addPendingToEvent(String evtId, User usr) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addPassengerToEvent(Event evt, User usr) {
+	public void addPassengerToEvent(String evtId, User usr) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void changeEventStatus(Event evt, String stat) {
+	public void deleteUserById(String userId) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Event getEventByTitleAndPublishTimeAndDriverId(String title,
+			Date publishtime, String driverId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }
