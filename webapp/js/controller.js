@@ -15,7 +15,9 @@ carpoolCtrl.controller('loginController', function($scope, $http, $cookieStore) 
 		 	console.log("loginController");
 		 	$scope.login = function() {		 		
 		 		console.log("login");	 		
-		 		$http.get('http://localhost:8080/api/login/request'+ '?email=' + $scope.user.email + '&password=' + $scope.user.password, $scope.user).success(function (response) {			
+		 		$http.get('http://localhost:8080/api/login/request'	+ '?email=' + $scope.user.email
+		 															+ '&password=' + $scope.user.password
+		 															).success(function (response) {			
 		 			$scope.user = response;
 		 			$cookieStore.put('user', $scope.user);
 		 			console.log('response:', $scope.user);
@@ -31,12 +33,12 @@ carpoolCtrl.controller('signupController', function($scope, $http, $window, $coo
 	 		
 	 		console.log("signup");
 	 		console.log($scope.user);
-	 		$http.get('http://10.198.8.254:8080/api/signup/', {params:{"email": $scope.user.email, 
-	 															"password": $scope.user.password, 
-	 															"gender": $scope.user.gender, 
-	 															"phone": $scope.user.phone, 
-	 															"name": $scope.user.name
-	 															}}).success(function (response) {
+	 		$http.get('http://localhost:8080/api/signup/request'+ '?email=' + $scope.user.email
+	 															+ '&password=' + $scope.user.password
+	 															+ '&gender=' + $scope.user.gender
+	 															+ '&phone=' + $scope.user.phone
+	 															+ '&username=' + $scope.user.name
+	 															).success(function (response) {
 	 			console.log(response);
 	 			$scope.user = response;
 	 			$cookieStore.put('user', $scope.user);
@@ -48,7 +50,7 @@ carpoolCtrl.controller('signupController', function($scope, $http, $window, $coo
 carpoolCtrl.controller('accountController', function($scope, $http, $cookieStore) {
 	 	console.log("accountController");
 	 	$scope.user = $cookieStore.get('user');	
-	 	$http.get('http://10.198.8.254:8080/api/account/', {params:{"userId": $scope.user.id}}).success(function (response) {
+	 	$http.get('http://localhost:8080/api/account/request'+ '?userid=' + $scope.user.id).success(function (response) {
 	 		$scope.events = response;
 	 	});
 });
@@ -59,14 +61,14 @@ carpoolCtrl.controller('driverInfoController', function($scope, $http, $window, 
 	 	$scope.submit = function() {
 	 		console.log($scope.event);
 	 		console.log("submit driver info");
-	 		$http.post('http://10.198.8.254:8080/api/create/', {params:{"title": $scope.event.title,
-	 															"startLocation": $scope.event.startLocation, 
-	 															"endLocation": $scope.event.endLocation, 
-	 															"date": $scope.event.date,
-	 															"capacity": $scope.event.capacity,
-	 															"price": $scope.event.price,
-	 															"memo": $scope.event.memo
-	 															}}).success(function (response) {
+	 		$http.post('http://localhost:8080/api/create/request'+ '?title=' + $scope.user.title
+	 															+ '&startLocation=' + $scope.user.startLocation
+	 															+ '&endLocation=' + $scope.user.endlocation
+	 															+ '&date=' + $scope.user.date
+	 															+ '&capacity=' + $scope.user.capacity
+	 															+ '&price=' + $scope.user.price
+	 															+ '&memo=' + $scope.user.memo
+	 															).success(function (response) {
 	 			window.location.href = "#/account";	
 	 			
 	 		});
@@ -79,10 +81,10 @@ carpoolCtrl.controller('riderInfoController', function($scope, $http) {
 	 	$scope.search = function() {
 	 		console.log($scope.rider);
 	 		console.log("search event");
-	 		$http.get('http://10.198.8.254:8080/api/search/', {params:{"startLocation": $scope.rider.startLocation, 
-																"endLocation": $scope.rider.endLocation, 
-																"date": $scope.rider.date,													
-																}}).success(function(data) {
+	 		$http.get('http://localhost:8080/api/search/request'+ '&startLocation=' + $scope.user.startLocation
+		 														+ '&endLocation=' + $scope.user.endlocation
+		 														+ '&date=' + $scope.user.date
+		 														).success(function(data) {
 	 			$scope.events = data;  
 		 		   console.log(data);	 		   
 	 		  });
@@ -94,9 +96,9 @@ carpoolCtrl.controller('eventController', function($scope, $routeParams, $cookie
  	console.log("eventController");
  	$scope.user = $cookieStore.get('user');	
  	$scope.eventId = $routeParams.eventId;
- 	$http.get('http://10.198.8.254:8080/api/event/', {params:{"eventId": $scope.eventId, 
-														"userId": $scope.user.id, 													
-														}}).success(function (response) {
+ 	$http.get('http://localhost:8080/api/event/request'	+ '&eventId=' + $scope.user.eventId
+		 												+ '&userId=' + $scope.user.userId
+		 												).success(function (response) {
  		$scope.event = response;
  	});
 });
