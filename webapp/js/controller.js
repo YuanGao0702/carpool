@@ -20,8 +20,7 @@ carpoolCtrl.controller('loginController', function($scope, $http, $cookieStore) 
 		 															+ '&password=' + $scope.user.password
 		 															).success(function (response) {			
 		 			$scope.user = response;
-		 			$cookieStore.put('user', $scope.user);
-		 			console.log('response:', $scope.user);
+		 			$cookieStore.put('user', $scope.user);		 			
 		 			window.location.href = "#/account";
 		 		});
 		 	};
@@ -74,26 +73,34 @@ carpoolCtrl.controller('driverInfoController', function($scope, $http, $window, 
 	 		createEvent.user = $scope.user;
 	 		$http.post('http://localhost:8080/api/events/', createEvent).success(function (response) {
 	 			window.location.href = "#/account";	
-	 			
 	 		});
 	 	};
 });
 
-carpoolCtrl.controller('riderInfoController', function($scope, $http) {
+carpoolCtrl.controller('riderInfoController', function($scope, $http, $cookieStore) {
 	 	console.log("riderInfoController");
-	 	
+	 	$scope.user = $cookieStore.get('user');	
 	 	$scope.search = function() {
 	 		console.log($scope.rider);
 	 		console.log("search event");
 	 		$http.get('http://localhost:8080/api/search/request'+ '&startLocation=' + $scope.user.startLocation
 		 														+ '&endLocation=' + $scope.user.endlocation
 		 														+ '&date=' + $scope.user.date
-		 														).success(function(data) {
-	 			$scope.events = data;  
-		 		   console.log(data);	 		   
+		 														).success(function(response) {
+	 			$scope.events = response;  
+		 		console.log(response);	 		   
+	 		  });		 													
+	 	};	
+	 	$scope.join = function($eventId) {
+	 		console.log($scope.rider);
+	 		console.log("search event");
+	 		$http.get('http://localhost:8080/api/search/request'+ '?userId=' + $scope.user.startLocation
+		 														+ '&eventId=' + $eventId		 														
+		 														).success(function(response) {
+	 			$scope.events = response;  
+		 		console.log(response);	 		   
 	 		  });
-
-	 	};	 		 	
+	 	};	 	 		 	
 });
 
 carpoolCtrl.controller('eventController', function($scope, $http, $routeParams, $cookieStore) { 	
@@ -105,8 +112,20 @@ carpoolCtrl.controller('eventController', function($scope, $http, $routeParams, 
 		 												).success(function (response) {
  	$scope.event = response;
  	console.log("event:", $scope.event);
+ 	});
+
  	$scope.accept = function($useremail) {
 	 	console.log("email:", $useremail);
-	 	};
- 	});
+	 	$http.get('http://localhost:8080/api/events/request'+ '?eventId=' + $scope.eventId
+		 												+ '&useremail=' + $scope.user.email
+		 												).success(function (response) {
+	 	});
+ 	};
+	$scope.decline = function($useremail) {
+	 	console.log("email:", $useremail);
+	 	$http.get('http://localhost:8080/api/events/request'+ '?eventId=' + $scope.eventId
+		 												+ '&useremail=' + $useremail
+		 												).success(function (response) {
+	 	});
+ 	};
 });

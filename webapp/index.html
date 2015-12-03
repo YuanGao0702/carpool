@@ -48,8 +48,11 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">                           
                             <li>
-                                <a href="#login">Login</a>
+                                 <a ng-if="user.id" href="#account">Hello! {{user.username}}</a>
                             </li>
+                            <li>
+                                <a ng-if="!user.id" href="#login">Login</a>
+                            </li>  
                             <li>
                                 <a href="#signup">Sign up</a>
                             </li>
