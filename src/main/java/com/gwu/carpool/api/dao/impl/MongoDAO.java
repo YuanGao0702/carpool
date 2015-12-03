@@ -412,5 +412,26 @@ public class MongoDAO implements CarpoolDAO {
 		return null;
 	}
 
+	@Override
+	public Optional<Event> getEventsById(String id) {
+		MongoClient mongoClient = new MongoClient();
+		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
+		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
+		
+		Bson filter = new Document("_id", new ObjectId(id));
+		try{
+			Document doc = coll.find(filter).first();
+			Event evt = eventDocToEvent(doc);
+			return Optional.of(evt);
+		}
+		catch(Exception e){
+			return Optional.empty();
+		}
+		finally{
+			mongoClient.close();
+		}
+		
+	}
+
 	
 }

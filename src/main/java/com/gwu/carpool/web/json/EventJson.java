@@ -44,6 +44,7 @@ public class EventJson {
 		this.publishTime = evt.getPublishTime();
 		
     }
+    
     public void setRole(String role) {
 		this.role = role;
 	}

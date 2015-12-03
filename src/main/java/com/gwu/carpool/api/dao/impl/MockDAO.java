@@ -124,6 +124,12 @@ public class MockDAO implements CarpoolDAO{
 		return null;
 	}
 
+	@Override
+	public Optional<Event> getEventsById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

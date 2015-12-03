@@ -133,4 +133,10 @@ public class CarpoolApi{
     	dao.changeEventStatusById(evtId, stat);
     }
 
+
+	
+    public Optional<Event> getEventById(String id) {
+    	return dao.getEventsById(id);
+	}
+
 }

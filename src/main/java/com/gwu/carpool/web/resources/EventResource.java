@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,7 +20,7 @@ import com.gwu.carpool.core.model.User;
 import com.gwu.carpool.web.json.EventJson;
 import com.gwu.carpool.web.json.UserJson;
 
-@Path("/api/event")
+@Path("/api/events")
 @Produces(MediaType.APPLICATION_JSON)
 public class EventResource {
 	
@@ -44,29 +45,44 @@ public class EventResource {
 	        return Response.ok(jsons).build();
 	    }
 		
+		
 		@GET
-	    @Path("/{email}")
+		@Path("/request")
 	    @Timed
-	    public Response getUserByEmail(@PathParam("email") String email) {
-	        Optional<User> result = api.getUserByEmail(email);
+	    public Response getEventByEventIdAndUserIdWithRole(@QueryParam("eventId") String eventId, @QueryParam("userId") String userId) {
+			
+			Optional<Event> evt = api.getEventById(eventId);
+	        if (evt.isPresent()) {
+	        	EventJson json = new EventJson(evt.get());
+	        	if(evt.get().getDriver().getId().equals(userId)){
+	        		json.setRole("driver");
+	        	}
+	        	else{
+	        		json.setRole("rider");
+	        	}
+	            return Response.ok(json).build();
+//	        	return Response.ok("email got called").build();
+	        } else {
+	            return Response.status(Response.Status.NOT_FOUND).entity("get event failed!").build();
+	        	//return Response.ok("fuck u!").build();
+	        }
+	    }
+		
+		
+		
+		@GET
+	    @Path("/{id}")
+	    @Timed
+	    public Response getEventById(@PathParam("id") String id) {
+	        Optional<Event> result = api.getEventById(id);
 	        if (result.isPresent()) {
-	            return Response.ok(new UserJson(result.get())).build();
+	        	
+	            return Response.ok(new EventJson(result.get())).build();
 //	        	return Response.ok("email got called").build();
 	        } else {
 	            return Response.status(Response.Status.NOT_FOUND).build();
 	        }
 	    }
 		
-		@GET
-	    @Path("/{email}/{gender}")
-	    @Timed
-	    public Response getProfile(@PathParam("gender") String email) {
-	        Optional<User> result = api.getUserByEmail(email);
-	        if (result.isPresent()) {
-	            //return Response.ok(new UserJson(result.get())).build();
-	        	return Response.ok("gender got called").build();
-	        } else {
-	            return Response.status(Response.Status.NOT_FOUND).build();
-	        }
-	    }
+	
 }

@@ -19,6 +19,7 @@ public interface CarpoolDAO {
 	public List<Event> getEventsByUserIdAsPending(String userId);
 	public List<Event> getEventsByUserIdAsPassenger(String userId);
 	public Event getEventByTitleAndPublishTimeAndDriverId(String title, Date publishtime, String driverId);
+	
 
 	//update
     public User updateUser(User user);
@@ -30,6 +31,7 @@ public interface CarpoolDAO {
 
     //delete
     public void deleteUserById(String userId);
+	public Optional<Event> getEventsById(String id);
 	
     
     
