@@ -32,8 +32,6 @@ public class CarpoolApi{
         return result;
     }
 	
-
-	
 	public List<User> getAllUsers(){
 		List<User> au = dao.getAllUsers();
 		return au;

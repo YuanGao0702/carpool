@@ -1,7 +1,10 @@
 package com.gwu.carpool.web.json;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.gwu.carpool.api.CarpoolApi;
+import com.gwu.carpool.api.dao.impl.MongoDAO;
 import com.gwu.carpool.core.model.Event;
 import com.gwu.carpool.core.model.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,11 +19,16 @@ public class UserJson {
     private String phone;
     private String password;
     private String reputation;
-
+    private String asDriver;
+	private String asPassengers;
+    private String asPending;
+    
 
     public UserJson() {}
 
     public UserJson(User u) {
+    	
+    	CarpoolApi api = new CarpoolApi(new MongoDAO("carpool"));
     	this.id = u.getId();
 		this.email = u.getEmail();
 		this.username = u.getUsername();
@@ -28,6 +36,12 @@ public class UserJson {
 		this.phone = u.getPhone();
 		this.password = u.getPassword();
 		this.reputation = u.getReputation();
+		this.asDriver = "/api/users/" + this.email + "/events/driver";
+		this.asPassengers = "/api/users/" + this.email + "/events/passenger";
+		this.asPending = "/api/users/" + this.email + "/events/pending";
+//		this.asDriver = api.getEventsByUserIdAsDriver(u.getId());
+//		this.asPassengers = api.getEventsByUserIdAsPassenger(u.getId());
+//		this.asPending = api.getEventsByUserIdAsPending(u.getId());
     }
 
     public User toUser() {
@@ -67,6 +81,21 @@ public class UserJson {
     @JsonProperty("reputation")
 	public String getReputation() {
 		return reputation;
+	}
+    
+    @JsonProperty("asDriver_url")
+    public String getAsDriver() {
+		return asDriver;
+	}
+
+    @JsonProperty("asPassengers_url")
+	public String getAsPassengers() {
+		return asPassengers;
+	}
+
+    @JsonProperty("asPending_url")
+	public String getAsPending() {
+		return asPending;
 	}
 
 

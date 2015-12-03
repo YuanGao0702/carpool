@@ -49,27 +49,39 @@ public class MongoDAO implements CarpoolDAO {
 		coll.drop();
 		coll = db.getCollection(eventCollectionName);
 		coll.drop();
-		User user1 = new User("luonaguo@gmail.com", "Luona Guo", "female",
+		User user1 = new User("1@gmail.com", "Luona Guo", "female",
 				"2028180726", "123456", "good");
-		User user2 = new User("haha@gmail.com", "haha Guo", "female",
+		User user2 = new User("2@gmail.com", "haha Guo", "female",
 				"2028180733", "123456", "bad");
 		User user3 = new User("3@gmail.com", "3 Guo", "female",
+				"2028180712", "123456", "brilliant");
+		User user4 = new User("4@gmail.com", "4 Guo", "female",
 				"2028180712", "123456", "brilliant");
 		
 		dao.createUser(user1);
 		dao.createUser(user2);
 		dao.createUser(user3);
+		dao.createUser(user4);
 		
 
 		Event evt1 = new Event("Let's go to Columbia Plaza", new Date(), 
 				"2000 s eads st nw, VA", "500 23rd st NW, DC", user1, null, null, 
 				"5", "this is description", "waiting", new Date());
-		//System.err.println(evt1);
+		
+		Event evt2 = new Event("Let's go to Columbia Plaza", new Date(), 
+				"2000 s eads st nw, VA", "500 23rd st NW, DC", user2, null, null, 
+				"5", "this is description", "waiting", new Date());
+		
 		dao.createEvent(evt1);
-		dao.addPendingToEvent(evt1.getId(), user2);
-		dao.addPendingToEvent(evt1.getId(), user3);
+		dao.createEvent(evt2);
+		
+		dao.addPendingToEvent(evt1.getId(), user4);
 		dao.addPassengerToEvent(evt1.getId(), user2);
-		//dao.removePendingFromEvent(evt1.getId(), user3);
+		dao.addPassengerToEvent(evt1.getId(), user3);
+		
+		dao.addPendingToEvent(evt2.getId(), user4);
+		dao.addPendingToEvent(evt2.getId(), user1);
+		dao.addPassengerToEvent(evt2.getId(), user3);
 		
 		System.err.println("----------------------------------------------------------------");
 		
@@ -79,20 +91,21 @@ public class MongoDAO implements CarpoolDAO {
 //		}
 		
 		//test changeEventStatus
-		dao.changeEventStatusById(evt1.getId(), "fuck");
+		//dao.changeEventStatusById(evt1.getId(), "fuck");
 		
-		dao.deleteUserById(user3.getId());
-		List<User> lu = dao.getAllUsers();
-		for(User usr : lu){
-			System.err.println(usr.toString());
-		}
-		System.err.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		//dao.deleteUserById(user3.getId());
+		//List<User> lu = dao.getAllUsers();
+//		for(User usr : lu){
+//			System.err.println(usr.toString());
+//		}
+//		System.err.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		//System.err.println(dao.getEventByTitleAndPublishTimeAndDriverId(evt1.getTitle(), evt1.getPublishTime(), evt1.getDriver().getId()));
 		
-		List<Event> le = dao.getEventsByDepartureTime(new Date());
-		for(Event evt : le){
-			System.err.println(evt.toString());
-		}
+//		List<Event> le = dao.getEventsByDepartureTime(new Date());
+//		for(Event evt : le){
+//			System.err.println(evt.toString());
+//		}
+		
 	}
 	
 	@Override
