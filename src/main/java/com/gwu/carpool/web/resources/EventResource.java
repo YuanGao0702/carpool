@@ -1,9 +1,14 @@
 package com.gwu.carpool.web.resources;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import javassist.expr.NewArray;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -47,25 +52,45 @@ public class EventResource {
 		
 		
 		@GET
-		@Path("/request")
+		@Path("/search")
 	    @Timed
-	    public Response getEventByEventIdAndUserIdWithRole(@QueryParam("eventId") String eventId, @QueryParam("userId") String userId) {
+	    public Response searchEvent(@QueryParam("departureTime") String departureTime,
+	    							@QueryParam("startAddress") String startAddress,
+	    							@QueryParam("endAddress") String endAddress) {
+			System.err.println("departureTime: " + departureTime);
+			Long longTime = Long.parseLong(departureTime);
+			System.err.println("longTime: " + longTime);
+			Date time = new Date(longTime);
+			System.err.println(time);
+//			DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");  
+//			try{
+//				//time = df.parse(departureTime);
+//			} catch(Exception e){
+//				e.printStackTrace();
+//			}
+			List<Event> evts = api.getEventsByDepartureTime(time);
+			List<EventJson> jsons = new ArrayList<EventJson>();
 			
-			Optional<Event> evt = api.getEventById(eventId);
-	        if (evt.isPresent()) {
-	        	EventJson json = new EventJson(evt.get());
-	        	if(evt.get().getDriver().getId().equals(userId)){
-	        		json.setRole("driver");
-	        	}
-	        	else{
-	        		json.setRole("rider");
-	        	}
-	            return Response.ok(json).build();
-//	        	return Response.ok("email got called").build();
-	        } else {
-	            return Response.status(Response.Status.NOT_FOUND).entity("get event failed!").build();
-	        	//return Response.ok("fuck u!").build();
+	        if (!evts.isEmpty()) {
+	        	for(Event a : evts){
+	        		System.err.println(a.getDepartureTime());
+					EventJson evj = new EventJson(a);
+					jsons.add(evj);
+				}
+	        	return Response.ok(jsons).build();	
+	        }else{
+	        	return Response.status(Response.Status.NOT_FOUND).entity("get event failed!").build();
 	        }
+	    }
+		
+		@GET
+		@Path("/join")
+	    @Timed
+	    public Response joinEvent(@QueryParam("eventId") String eventId, @QueryParam("userEmail") String userEmail) {
+			
+			api.addPendingToEvent(eventId, api.getUserByEmail(userEmail).get());
+	        return Response.ok().entity("join success").build();
+//	        	return Response.ok("email got called").build();
 	    }
 		
 		@GET

@@ -247,7 +247,7 @@ public class MongoDAO implements CarpoolDAO {
 		MongoDatabase db = mongoClient.getDatabase(dataBaseName);
 		MongoCollection<Document> coll = db.getCollection(eventCollectionName);
 		
-		Bson filter = new Document("departureTime", new Document("$lte", new DateTime().toDate()));
+		Bson filter = new Document("departureTime", new Document("$lte", date));
 		List<Document> ld = coll.find(filter).into(new ArrayList<Document>());
 		List<Event> le = new ArrayList<Event>();
 		for(Document d : ld){
