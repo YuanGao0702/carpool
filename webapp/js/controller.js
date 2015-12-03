@@ -32,14 +32,14 @@ carpoolCtrl.controller('signupController', function($scope, $http, $window, $coo
 	 	$scope.signup = function() {
 	 		
 	 		console.log("signup");
-	 		console.log($scope.user);
+	 		console.log("scope:", $scope.user);
 	 		$http.get('http://localhost:8080/api/signup/request'+ '?email=' + $scope.user.email
 	 															+ '&password=' + $scope.user.password
 	 															+ '&gender=' + $scope.user.gender
 	 															+ '&phone=' + $scope.user.phone
 	 															+ '&username=' + $scope.user.name
 	 															).success(function (response) {
-	 			console.log(response);
+	 			console.log("response:", response);
 	 			$scope.user = response;
 	 			$cookieStore.put('user', $scope.user);
 	 			window.location.href = "#/account";
@@ -50,9 +50,11 @@ carpoolCtrl.controller('signupController', function($scope, $http, $window, $coo
 carpoolCtrl.controller('accountController', function($scope, $http, $cookieStore) {
 	 	console.log("accountController");
 	 	$scope.user = $cookieStore.get('user');	
-	 	$http.get('http://localhost:8080/api/account/request'+ '?userid=' + $scope.user.id).success(function (response) {
+	 	$http.get('http://localhost:8080/api/users/'+ $scope.user.email + '/events').success(function (response) {
 	 		$scope.events = response;
+	 		console.log("response:", $scope.events);
 	 	});
+
 });
 
 carpoolCtrl.controller('driverInfoController', function($scope, $http, $window, $cookieStore) {

@@ -8,73 +8,29 @@
 				<div class="row">
 					
 				<div ng-repeat="event in events">
-				
-					<div ng-if="event.status != 'completed'" id="uncomplete-event" class="col-md-6 uncomplete-event">
-						<div ng-if="event.status == 'launched'" id="launched-event" class="col-md-12 launched-event">
-							<h3 class="col-md-12"><a href="#/event/{{event.id}}">launched event</a></h3>
+									
+							<h3 class="col-md-12">Event List</h3>
 							<div class="col-md-12 event_information">							
 								<table style="width:100%">					
 									<tr>
-										<td>Location:</td>
-										<td>{{event.location}}</td>		
-										<td>Estimate Price:</td>
-										<td>${{event.price}}/person</td>
+										<td><a href="#/event/{{event.id}}">Title:</a></td>
+										<td>{{event.title}}</td>
+										<td>Start Address:</td>
+										<td>{{event.startAddress}}</td>	
+										<td>End Address:</td>
+										<td>{{event.endAddress}}</td>										
 									</tr>
 									<tr>
 										<td>Date:</td>
-										<td>{{event.date}}</td>		
+										<td>{{event.departureTime}}</td>		
 										<td>Total People:</td>
 										<td>{{event.capacity}}</td>
+										<td>Memo</td>
+										<td>{{event.description}}</td>		
 									</tr>						  
 								</table>												
 							</div>									
-						</div><!-- launched-event -->
-						
-						
-						<div ng-if="event.status == 'pending'" id="pending-event" class="col-md-12 pending-event">
-							<h3 class="col-md-12"><a href="#/event/{{event.id}}">pending event</a></h3>
-							<div class="col-md-12 event_information">							
-								<table style="width:100%">					
-									<tr>
-										<td>Location:</td>
-										<td>{{event.location}}</td>		
-										<td>Estimate Price:</td>
-										<td>${{event.price}}/person</td>
-									</tr>
-									<tr>
-										<td>Date:</td>
-										<td>1{{event.date}}</td>		
-										<td>Total People:</td>
-										<td>{{event.capacity}}</td>
-									</tr>						  
-								</table>												
-							</div>									
-						</div>
-											
-					</div><!-- uncomplete-event -->
-					
-					<div ng-if="event.status == 'completed'" id="completed-event" class="col-md-6">
-		  				<div class="col-md-12 completed-event">
-							<h3 class="col-md-12"><a href="#/event/{{event.id}}">rating event</a></h3>
-							<div class="col-md-12 event_information">							
-								<table style="width:100%">					
-									<tr>
-										<td>Location:</td>
-										<td>{{event.location}}</td>		
-										<td>Estimate Price:</td>
-										<td>${{event.price}}/person</td>
-									</tr>
-									<tr>
-										<td>Date:</td>
-										<td>1{{event.date}}</td>		
-										<td>Total People:</td>
-										<td>{{event.capacity}}</td>
-									</tr>					  
-								</table>												
-							</div>									
-						</div>
-					</div>
-					
+																																		
 				</div>
 					
 				</div><!-- row -->	
