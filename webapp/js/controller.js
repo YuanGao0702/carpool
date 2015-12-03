@@ -5,6 +5,7 @@ var carpoolCtrl = angular.module('carpoolCtrl', ['ngCookies']);
 //create the controller and inject Angular's $scope
 carpoolCtrl.controller('mainController', function($scope, $cookieStore) {
 	$scope.user = $cookieStore.get('user');	
+	console.log('mainresponse:', $scope.user);
 });
 
 carpoolCtrl.controller('aboutController', function($scope) {
@@ -59,18 +60,19 @@ carpoolCtrl.controller('accountController', function($scope, $http, $cookieStore
 
 carpoolCtrl.controller('driverInfoController', function($scope, $http, $window, $cookieStore) {
 	 	console.log("driverInfoController");
-
+	$scope.user = $cookieStore.get('user');	
 	 	$scope.submit = function() {
 	 		console.log($scope.event);
-	 		console.log("submit driver info");
-	 		$http.post('http://localhost:8080/api/create/request'+ '?title=' + $scope.user.title
-	 															+ '&startLocation=' + $scope.user.startLocation
-	 															+ '&endLocation=' + $scope.user.endlocation
-	 															+ '&date=' + $scope.user.date
-	 															+ '&capacity=' + $scope.user.capacity
-	 															+ '&price=' + $scope.user.price
-	 															+ '&memo=' + $scope.user.memo
-	 															).success(function (response) {
+	 		console.log("create a event");
+	 		var createEvent = {};
+	 		createEvent.title = $scope.event.title;
+	 		createEvent.startAddress = $scope.event.startAddress;
+	 		createEvent.endAddress = $scope.event.endAddress;
+	 		createEvent.date = $scope.event.date;
+	 		createEvent.capacity = $scope.event.capicity;
+	 		createEvent.description = $scope.event.memo;
+	 		createEvent.user = $scope.user;
+	 		$http.post('http://localhost:8080/api/events/', createEvent).success(function (response) {
 	 			window.location.href = "#/account";	
 	 			
 	 		});
@@ -98,9 +100,13 @@ carpoolCtrl.controller('eventController', function($scope, $http, $routeParams, 
  	console.log("eventController");
  	$scope.user = $cookieStore.get('user');	
  	$scope.eventId = $routeParams.eventId;
- 	$http.get('http://localhost:8080/api/event/request'	+ '?eventId=' + $scope.eventId
+ 	$http.get('http://localhost:8080/api/events/request'+ '?eventId=' + $scope.eventId
 		 												+ '&userId=' + $scope.user.id
 		 												).success(function (response) {
  	$scope.event = response;
+ 	console.log("event:", $scope.event);
+ 	$scope.accept = function($useremail) {
+	 	console.log("email:", $useremail);
+	 	};
  	});
 });

@@ -46,10 +46,7 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#about">About</a>
-                            </li>
+                        <ul class="nav navbar-nav navbar-right">                           
                             <li>
                                 <a href="#login">Login</a>
                             </li>
@@ -62,14 +59,11 @@
                 </div>
                 <!-- /.container -->
             </nav>
-            {{user.name}}
-{{user.email}}
-{{user.gender}}
-{{user.password}}
+           
         </header>
-		   	
-		   	{{ message }}
+        <div class="intro-header">
            <div ng-view></div>
+        </div>
 
     <footer>
         <div class="container">
@@ -92,6 +86,7 @@
                 </div>
             </div>
         </div>
+
     </footer>
            
 

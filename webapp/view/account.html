@@ -1,15 +1,12 @@
-{{user.name}}
-{{user.email}}
-{{user.gender}}
-{{user.password}}
+
 <div class="page">
    		<div class="account">
 	    	<div class="container">
 				<div class="row">
-					
-				<div ng-repeat="event in events">
-									
-							<h3 class="col-md-12">Event List</h3>
+				
+				<h3 class="col-md-12">Event List</h3>	
+					<div ng-repeat="event in events">
+	
 							<div class="col-md-12 event_information">							
 								<table style="width:100%">					
 									<tr>
@@ -26,12 +23,12 @@
 										<td>Total People:</td>
 										<td>{{event.capacity}}</td>
 										<td>Memo</td>
-										<td>{{event.description}}</td>		
+										<td>{{event.description}}</td>	
 									</tr>						  
 								</table>												
 							</div>									
 																																		
-				</div>
+					</div>
 					
 				</div><!-- row -->	
 			</div>
