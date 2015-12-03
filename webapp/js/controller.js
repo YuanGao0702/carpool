@@ -94,13 +94,13 @@ carpoolCtrl.controller('riderInfoController', function($scope, $http) {
 	 	};	 		 	
 });
 
-carpoolCtrl.controller('eventController', function($scope, $routeParams, $cookieStore) { 	
+carpoolCtrl.controller('eventController', function($scope, $http, $routeParams, $cookieStore) { 	
  	console.log("eventController");
  	$scope.user = $cookieStore.get('user');	
  	$scope.eventId = $routeParams.eventId;
- 	$http.get('http://localhost:8080/api/event/request'	+ '&eventId=' + $scope.user.eventId
-		 												+ '&userId=' + $scope.user.userId
+ 	$http.get('http://localhost:8080/api/event/request'	+ '?eventId=' + $scope.eventId
+		 												+ '&userId=' + $scope.user.id
 		 												).success(function (response) {
- 		$scope.event = response;
+ 	$scope.event = response;
  	});
 });
