@@ -2,21 +2,25 @@
     	<div class="container">
 			<div class="row">
 				<div class="col-md-7">
-					<div class="col-md-12 event_information">
+					<div ng-repeat="event in events" class="col-md-12 event_information">
 						<table style="width:100%">
 						<caption>Go to class</caption>
-						  <tr>
-										<td>Location:</td>
-										<td>{{event.location}}</td>		
-										<td>Estimate Price:</td>
-										<td>${{event.price}}/person</td>
+						  			<tr>
+										<td><a href="#/event/{{event.id}}">Title:</a></td>
+										<td>{{event.title}}</td>
+										<td>Start Address:</td>
+										<td>{{event.startAddress}}</td>	
+										<td>End Address:</td>
+										<td>{{event.endAddress}}</td>										
 									</tr>
 									<tr>
 										<td>Date:</td>
-										<td>{{event.date}}</td>		
+										<td>{{event.departureTime}}</td>		
 										<td>Total People:</td>
 										<td>{{event.capacity}}</td>
-									</tr>
+										<td>Memo</td>
+										<td>{{event.description}}</td>		
+									</tr>	
 						</table>
 					</div>
 					
@@ -26,8 +30,8 @@
 							 <img alt="" src="img/UserF.png">
 							</div>
 							<div class="col-md-6 user_information">							
-								<h4>{{user.name}}</h4>
-								<p>{{user.role}}</p>													
+								<!-- <h4>{{user.name}}</h4>
+								<p>{{user.role}}</p>	 -->												
 																			
 							</div>
 							<div ng-if="user.status" class="col-md-3 user_status">
