@@ -68,6 +68,22 @@ public class EventResource {
 	        }
 	    }
 		
+		@GET
+		@Path("/accept")
+	    @Timed
+	    public Response acceptPassenger(@QueryParam("eventId") String eventId, @QueryParam("userEmail") String userEmail) {
+			api.addPassengerToEvent(eventId, api.getUserByEmail(userEmail).get());
+	        return Response.ok().build();
+	    }
+
+		@GET
+		@Path("/decline")
+		@Timed
+		public Response acceptRider(@QueryParam("eventId") String eventId, @QueryParam("userEmail") String userEmail) {
+			api.removePendingFromEvent(eventId, api.getUserByEmail(userEmail).get());
+		        return Response.ok().build();
+		}
+		
 		
 		
 		@GET

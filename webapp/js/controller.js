@@ -63,15 +63,27 @@ carpoolCtrl.controller('driverInfoController', function($scope, $http, $window, 
 	 	$scope.submit = function() {
 	 		console.log($scope.event);
 	 		console.log("create a event");
-	 		var createEvent = {};
-	 		createEvent.title = $scope.event.title;
-	 		createEvent.startAddress = $scope.event.startAddress;
-	 		createEvent.endAddress = $scope.event.endAddress;
-	 		createEvent.date = $scope.event.date;
-	 		createEvent.capacity = $scope.event.capicity;
-	 		createEvent.description = $scope.event.memo;
-	 		createEvent.user = $scope.user;
-	 		$http.post('http://localhost:8080/api/events/', createEvent).success(function (response) {
+
+
+	 		var request = $http({
+                    method: "post",
+                    url: "http://localhost:8080/api/events/",
+                    transformRequest: transformRequestAsFormPost,
+                    data: {
+                        title: $scope.event.title,
+                        startAddress: $scope.event.startAddress,
+                        endAddress : $scope.event.endAddress;
+                        capacity : $scope.event.capicity;
+                        departureTime : $scope.event.date.toString();
+                        description : $scope.event.memo;
+                    	}
+                });
+
+
+
+
+
+	 		request.success(function (response) {
 	 			window.location.href = "#/account";	
 	 		});
 	 	};
