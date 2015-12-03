@@ -22,9 +22,12 @@ public class EventJson {
 	private String description;
 	private String status;
 	private Date publishTime; 
+	private String role;
 
 
-    public EventJson() {}
+   
+
+	public EventJson() {}
 
     public EventJson(Event evt) {
     	this.id = evt.getId();
@@ -39,52 +42,62 @@ public class EventJson {
 		this.description = evt.getDescription();
 		this.status = evt.getStatus();
 		this.publishTime = evt.getPublishTime();
+		
     }
-    @JsonProperty
+    public void setRole(String role) {
+		this.role = role;
+	}
+    
+    @JsonProperty("role")
+    public String getRole() {
+		return role;
+	}
+
+	@JsonProperty("id")
 	public String getId() {
 		return id;
 	}
-    @JsonProperty
+    @JsonProperty("title")
 	public String getTitle() {
 		return title;
 	}
-    @JsonProperty
+    @JsonProperty("departureTime")
 	public Date getDepartureTime() {
 		return departureTime;
 	}
-    @JsonProperty
+    @JsonProperty("startAddress")
 	public String getStartAddress() {
 		return startAddress;
 	}
-    @JsonProperty
+    @JsonProperty("endAddress")
 	public String getEndAddress() {
 		return endAddress;
 	}
-    @JsonProperty
+    @JsonProperty("driver")
 	public User getDriver() {
 		return driver;
 	}
-    @JsonProperty
+    @JsonProperty("passengers")
 	public ArrayList<User> getPassengers() {
 		return passengers;
 	}
-    @JsonProperty
+    @JsonProperty("pending")
 	public ArrayList<User> getPending() {
 		return pending;
 	}
-    @JsonProperty
+    @JsonProperty("capacity")
 	public String getCapacity() {
 		return capacity;
 	}
-    @JsonProperty
+    @JsonProperty("description")
 	public String getDescription() {
 		return description;
 	}
-    @JsonProperty
+    @JsonProperty("status")
 	public String getStatus() {
 		return status;
 	}
-    @JsonProperty
+    @JsonProperty("publishTime")
 	public Date getPublishTime() {
 		return publishTime;
 	}

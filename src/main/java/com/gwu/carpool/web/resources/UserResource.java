@@ -69,6 +69,7 @@ public class UserResource {
 	        List<EventJson> jsons = new ArrayList<EventJson>();
 	        for(Event one : events){
 	        	EventJson uj = new EventJson(one);
+	        	uj.setRole("rider");
 	        	jsons.add(uj);
 	        }
 	        if (!events.isEmpty()) {
@@ -88,6 +89,7 @@ public class UserResource {
 	        List<EventJson> jsons = new ArrayList<EventJson>();
 	        for(Event one : events){
 	        	EventJson uj = new EventJson(one);
+	        	uj.setRole("rider");
 	        	jsons.add(uj);
 	        }
 	        if (events.size() != 0) {
@@ -107,6 +109,7 @@ public class UserResource {
 	        List<EventJson> jsons = new ArrayList<EventJson>();
 	        for(Event one : events){
 	        	EventJson uj = new EventJson(one);
+	        	uj.setRole("driver");
 	        	jsons.add(uj);
 	        }
 	        if (events.size() != 0) {
