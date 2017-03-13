@@ -6,7 +6,7 @@ var carpoolCtrl = angular.module('carpoolCtrl', ['ngCookies']);
 carpoolCtrl.controller('mainController', function($scope, $cookieStore) {
 	$scope.user = $cookieStore.get('user');	
 	console.log('mainresponse:', $scope.user);
-});
+});  
 
 carpoolCtrl.controller('aboutController', function($scope) {
     $scope.message = 'Look! I am an about page.';
